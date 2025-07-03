@@ -50,10 +50,10 @@ A **Flask-based coworking space discovery tool** leveraging **Google Maps** and 
 ### 2. Filter View
 ![Filter](./images/filter_screenshot.png)
 
-### 2. Search View
+### 3. Search View
 ![Search](./images/search_screenshot.png)
 
-### 3. Coworking Space Details
+### 4. Coworking Space Details
 ![Space Details](./images/details_screenshot.png)
 
 ---
@@ -70,38 +70,42 @@ A **Flask-based coworking space discovery tool** leveraging **Google Maps** and 
 
 1. **Clone or Fork the Repository**
     ```bash
-   git clone https://github.com/arybud/workspace-connect.git
-   cd workspace-connect
+    git clone https://github.com/arybud/workspace-connect.git
+    cd workspace-connect
     ```
-2. **Install Dependencies**
+2. **Create a Virtual Environment** (recommended)
     ```bash
-   pip install -r requirements.txt
-   ```
-3. **Configure Environment Variables**
-- GOOGLE_MAPS_API_KEY: Must be set so Flask can use it.
-
-- DATABASE_URI: (Optional) If you want to override the default postgresql://postgres:postgres@localhost:5432/coworking_db.
-
-    On Linux/Mac:
+    python3 -m venv venv
+    source venv/bin/activate  # On Windows use: venv\Scripts\activate
+    ```
+3. **Install Dependencies**
     ```bash
-    export GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+    pip install -r requirements.txt
     ```
-    On Windows:
+4. **Configure Environment Variables**
+    - Copy `.env.example` to `.env`:
+      ```bash
+      cp .env.example .env
+      ```
+    - Edit `.env` and set your Google Maps API key:
+      ```
+      GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+      ```
+    - *(Optional)* add `DATABASE_URI` if you want to override the default
+      `postgresql://postgres:postgres@localhost:5432/coworking_db`.
+      The application loads variables from `.env` automatically.
+5. **Create the Database (in PostgreSQL)**
     ```bash
-    $env:GOOGLE_MAPS_API_KEY="your_google_maps_api_key" 
+    CREATE DATABASE coworking_db;
     ```
-4. **Create the Database (in PostgreSQL)**
-   ```bash
-    CREATE DATABASE coworking_db;   
-    ```
-Or update the config in app.py if you prefer a different database name 
+    Or update the config in app.py if you prefer a different database name
 
-5. **Load Sample Data**
+6. **Load Sample Data**
     ```bash
     python data_load.py
    ```
 
-6. **Run the Application**
+7. **Run the Application**
     ```bash
     python app.py
     ```
@@ -162,4 +166,4 @@ This project is distributed under the [MIT License](LICENSE).
 
 ## Contact
 
-For feedback, issues, or collaboration requests, please open an [issue](https://github.com/<arybud>/workspace-connect/issues) or reach out via email at **aryanbudhiraja108@gmail.com**.
+For feedback, issues, or collaboration requests, please open an [issue](https://github.com/arybud/workspace-connect/issues) or reach out via email at **aryanbudhiraja108@gmail.com**.
